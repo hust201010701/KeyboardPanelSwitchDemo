@@ -1,0 +1,2 @@
+# KeyboardPanelSwitchDemo
+android keyboard键盘和panel面板切换时，屏幕闪烁解决方案
