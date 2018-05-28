@@ -1,75 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<cn.dreamtobe.kpswitch.widget.KPSwitchRootLinearLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/rootView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.orzangleli.myapplication.MainActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-
-    <LinearLayout
+    <Button
+        android:id="@+id/button1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:text="传统思路切换键盘"
+        />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:orientation="horizontal"
-            >
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="解决切换键盘冲突"
+        />
 
-            <Button
-                android:id="@+id/change"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:text="+"
-                />
-
-            <EditText
-                android:id="@+id/edittext"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_weight="1"
-                />
-
-            <Button
-                android:id="@+id/send"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:text="Send"
-                />
-
-        </LinearLayout>
-
-        <cn.dreamtobe.kpswitch.widget.KPSwitchPanelLinearLayout
-            android:id="@+id/panel_root"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-
-            <View
-                android:id="@+id/quick"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#900"
-                />
-        </cn.dreamtobe.kpswitch.widget.KPSwitchPanelLinearLayout>
-    </LinearLayout>
-
-</cn.dreamtobe.kpswitch.widget.KPSwitchRootLinearLayout>
-
-
+</LinearLayout>

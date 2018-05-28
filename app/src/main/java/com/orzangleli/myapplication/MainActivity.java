@@ -1,11 +1,13 @@
 package com.orzangleli.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.inputmethodservice.Keyboard;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,92 +16,33 @@ import cn.dreamtobe.kpswitch.util.KPSwitchConflictUtil;
 import cn.dreamtobe.kpswitch.util.KeyboardUtil;
 import cn.dreamtobe.kpswitch.widget.KPSwitchPanelLinearLayout;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    Button change, send;
-    EditText editText;
-    View quick;
-    KPSwitchPanelLinearLayout panel;
-    View root;
+    Button mButton1, mButton2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        change = this.findViewById(R.id.change);
-        send = this.findViewById(R.id.send);
-        editText = this.findViewById(R.id.edittext);
-        quick = this.findViewById(R.id.quick);
-        panel = this.findViewById(R.id.panel_root);
-        root = this.findViewById(R.id.rootView);
+        mButton1 = this.findViewById(R.id.button1);
+        mButton2 = this.findViewById(R.id.button2);
 
 
-//        change.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (panel.getVisibility() == View.GONE) {
-//                    panel.setVisibility(View.VISIBLE);
-//                    editText.clearFocus();
-//                    closeKeybord(editText);
-//                    change.setText("X");
-//                } else {
-//                    panel.setVisibility(View.GONE);
-//                    editText.requestFocus();
-//                    openKeybord(editText);
-//                    change.setText("+");
-//                }
-//            }
-//        });
-
-
-        KeyboardUtil.attach(this, panel,
-                // Add keyboard showing state callback, do like this when you want to listen in the
-                // keyboard's show/hide change.
-                new KeyboardUtil.OnKeyboardShowingListener() {
-                    @Override
-                    public void onKeyboardShowing(boolean isShowing) {
-                        Log.d("lxc", String.format("Keyboard is %s", isShowing ? "showing" : "hiding"));
-                    }
-                });
-
-        KPSwitchConflictUtil.attach(panel, change, editText,
-                new KPSwitchConflictUtil.SwitchClickListener() {
-                    @Override
-                    public void onClickSwitch(boolean switchToPanel) {
-                        if (switchToPanel) {
-                            editText.clearFocus();
-                            change.setText("X");
-                        } else {
-                            editText.requestFocus();
-                            change.setText("+");
-                        }
-                    }
-                });
-
-
+        mButton1.setOnClickListener(this);
+        mButton2.setOnClickListener(this);
     }
 
-
-    /**
-     * 打开软键盘
-     *
-     * @param mEditText
-     */
-    public void openKeybord(EditText mEditText) {
-        InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(mEditText, InputMethodManager.RESULT_SHOWN);
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,
-                InputMethodManager.HIDE_IMPLICIT_ONLY);
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.button1:
+                Intent intent = new Intent(this, KeyboardActivity.class);
+                intent.putExtra("mode", KeyboardActivity.MODE_CLASSICAL);
+                this.startActivity(intent);
+                break;
+            case R.id.button2:
+                break;
+        }
     }
-
-    /**
-     * 关闭软键盘
-     */
-    public void closeKeybord(EditText mEditText) {
-        InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(mEditText.getWindowToken(), 0);
-    }
-
-
 }
