@@ -25,8 +25,13 @@ public class ClassicalFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_classical, container, false);
+        initTitle("传统思路切换键盘");
         initView(root);
         return root;
+    }
+
+    private void initTitle(String title) {
+        this.getActivity().setTitle(title);
     }
 
     private void initView(View root) {

@@ -19,6 +19,13 @@
         android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="半解决切换键盘冲突"
+        />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="解决切换键盘冲突"
         />
 
