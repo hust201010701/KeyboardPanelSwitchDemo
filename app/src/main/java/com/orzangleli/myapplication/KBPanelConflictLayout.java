@@ -39,16 +39,16 @@ public class KBPanelConflictLayout extends FrameLayout {
         if (mHide) {
             widthMeasureSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.EXACTLY);
             heightMeasureSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.EXACTLY);
-            setVisibility(View.GONE);
         }
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
-    public void setHide() {
+    public void hide() {
         this.mHide = true;
+        setVisibility(View.GONE);
     }
 
-    public void setShow() {
+    public void show() {
         this.mHide = false;
         setVisibility(View.VISIBLE);
     }

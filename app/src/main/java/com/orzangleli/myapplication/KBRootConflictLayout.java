@@ -1,11 +1,9 @@
 package com.orzangleli.myapplication;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 /**
@@ -56,13 +54,13 @@ public class KBRootConflictLayout extends LinearLayout {
                 // 键盘弹起
                 if (mKBPanelConflictLayout != null) {
                     // 隐藏面板
-                    mKBPanelConflictLayout.setHide();
+                    mKBPanelConflictLayout.hide();
                 }
             } else {
                 // 键盘收起
                 if (mKBPanelConflictLayout != null) {
                     // 显示面板
-                    mKBPanelConflictLayout.setShow();
+                    mKBPanelConflictLayout.show();
                 }
             }
         }
