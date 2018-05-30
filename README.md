@@ -11,7 +11,7 @@ Android 键盘相关常见问题有：
 
 下面将对上述问题各个击破。
 
-### 1. 限制输入框内字数，超过字数不让输入，并且提示
+## 1. 限制输入框内字数，超过字数不让输入，并且提示
 
 ```java
 etReply.setFilters(new InputFilter[]{new InputFilter() {
@@ -25,7 +25,7 @@ etReply.setFilters(new InputFilter[]{new InputFilter() {
 }, new InputFilter.LengthFilter(COMMENT_MAX_NUM)});
 ```
 
-### 2. 点击外部区域键盘自动收起
+## 2. 点击外部区域键盘自动收起
 
 如果当前页面是Activity那么可以直接重写`dispatchTouchEvent`方法。在`ACTION_DOWN`事件时，判断点击的坐标是否在输入框坐标的上面，如果是那么调用隐藏键盘的方法。
 
@@ -35,10 +35,10 @@ etReply.setFilters(new InputFilter[]{new InputFilter() {
 
 首先需要知道一点，键盘高度不是固定的。用户使用不同的输入法，高度可能不一样；甚至有些输入法，可以直接调节输入法面板的高度。
 
-### 1. 有没有系统的api可以供我们获取键盘高度？
+### 3.1 有没有系统的api可以供我们获取键盘高度？
 没有。
 
-### 2. 有什么方法可以间接获取键盘高度？
+### 3.2 有什么方法可以间接获取键盘高度？
 系统给我们提供了一个页面布局变化的监听器`OnGlobalLayoutListener `，这个监听器可以通知我们布局发生改变，我们可以在此时获取自己的高度，再通过屏幕宽度和状态栏高度等间接计算出键盘的高度。
 
 - 那么就有一个问题，`OnGlobalLayoutListener `接收到变化动作时，一定是键盘弹出或消失么？
@@ -52,7 +52,7 @@ etReply.setFilters(new InputFilter[]{new InputFilter() {
 
 	> 在Android7.0上，我们可以使用多任务键开启分屏/多窗口模式，当我们开启分屏之后，调整分屏的分界线时，都会触发`DecorView`的`OnGlobalLayoutListener`，但是此时键盘并未触发任何动作；而且，当我们点击某个输入框之后，键盘在分屏模式下会变成悬浮模式，不会挤压Activity的控件，所以当键盘弹出或收起时，`OnGlobalLayoutListener `不会接收到任何事件。这就导致了`OnGlobalLayoutListener `完全失效。还有一些其他的场景导致监听键盘事件失效的情景，暂时想不起来，可以在评论处补充。
 
-### 3. 获取键盘高度
+### 3.3 获取键盘高度
 
 在一般情况下，我们对`Activity`的`PhoneWindow`中`DecorView`的布局变化进行监听，一般来说，变化值超过`60dp`就可以认为是键盘弹出或收起了。而且在非全屏主题下，
 键盘高度 = 屏幕高度 - 状态栏高度 - 主视图高度 - 标题栏高度， 于是我们可以通过下面代码间接计算出键盘高度。
@@ -231,7 +231,9 @@ public void setShow() {
 
 如果你把上述代码整理优化下，加上对RelativeLayout和FrameLayout的支持，对设置是否调整面板高度与键盘一致的支持，对多面板的切换的支持，提供一些工具类给用户直接调用，那就是2000+star的[https://github.com/Jacksgong/JKeyboardPanelSwitch](https://github.com/Jacksgong/JKeyboardPanelSwitch)项目了。
 
+附上本文Demo地址，欢迎点心：
 
+[https://github.com/hust201010701/KeyboardPanelSwitchDemo](https://github.com/hust201010701/KeyboardPanelSwitchDemo)
 
 
 
